@@ -6,10 +6,15 @@ Create static screenshots of genomic regions using IGV.
 2. From that directory, create batch files with
        bash igvCreateBatchFiles.sh
 3. then, to create screenshots for each sample on an LSF cluster, run
+
        for i in *.igv;do 
            bsub -oo err.log -q long -M 12000000 -R 'select[mem>12000] rusage[mem=12000]' "bash ~cmiller/oneoffs/igvCreateSnapshots.sh $i"; 
        done
+
 Your screenshots will be stored in SAMPLENAME_snaps and look something like the thumbnail attached below.  I like the geeqie program for flipping through them rapidly. You can install it on Ubuntu with 'sudo apt-get install geeqie'.
+
+![IGVscreenshot](https://i.imgur.com/4nelXlc.png)
+
  
 ##Long version:
 The scripts have some specific requirements. The first step currently expects a single folder with an IGV XML and bed file for each sample, with exactly matching names. For example:
